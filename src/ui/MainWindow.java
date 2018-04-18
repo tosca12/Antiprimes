@@ -65,10 +65,12 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * Change the list showing the last antiprimes found so far.
+     */
     private void updateDisplay() {
-        Number last = sequence.getLast();
-        if (display.getSize() >= SHOW_LAST)
-            display.remove(SHOW_LAST - 1);
-        display.add(0, "" + last.getValue() + " (" + last.getDivisors() + ")");
+        display.clear();
+        for (Number n : sequence.getLastK(SHOW_LAST))
+            display.add(0, "" + n.getValue() + " (" + n.getDivisors() + ")");
     }
 }

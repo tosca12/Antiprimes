@@ -20,7 +20,7 @@ public class AntiPrimes {
     }
 
     /**
-     * Count how many integers exaclty divide n.
+     * Count how many integers exactly divide n.
      */
     static public long countDivisors(long n) {
         long c = 1;
