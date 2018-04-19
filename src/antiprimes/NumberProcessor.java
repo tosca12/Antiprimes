@@ -21,12 +21,12 @@ public class NumberProcessor extends Thread {
     /**
      * The antiprime of which the successor must be computed.
      */
-    Number request = null;
+    private Number request = null;
 
     /**
      * The sequence of antiprimes that is extended by the processor.
      */
-    AntiPrimesSequence sequence;
+    private AntiPrimesSequence sequence;
 
     /**
      * Initialize the processor.
