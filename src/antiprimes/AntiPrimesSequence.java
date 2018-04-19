@@ -13,16 +13,33 @@ public class AntiPrimesSequence {
      * The numbers in the sequence.
      */
     private List<Number> antiPrimes = new ArrayList<>();
-    private NumberProcessor processor;
+
+    /**
+     * Object which processes the numbers.
+     */
+    private NumberProcessorMT processor;
+
+    /**
+     * List of objects observing the sequence.
+     */
     private List<Observer> observers = new ArrayList<>();
 
     /**
      * Create a new sequence containing only the first antiprime (the number '1').
+     *
+     * poolSize denotes the number of concurrent threads used to carry on the computation.
+     */
+    public AntiPrimesSequence(int poolSize) {
+        processor = new NumberProcessorMT(this);
+        this.reset();
+        processor.startThreads(poolSize);
+    }
+
+    /**
+     * Create a new sequence with a default number of concurrent threads.
      */
     public AntiPrimesSequence() {
-        processor = new NumberProcessor(this);
-        this.reset();
-        processor.start();
+        this(4);
     }
 
     /**
@@ -35,7 +52,7 @@ public class AntiPrimesSequence {
     /**
      * Clear the sequence so that it contains only the first antiprime (the number '1').
      */
-    public void reset() {
+    synchronized public void reset() {
         antiPrimes.clear();
         addAntiPrime(new Number(1, 1));
     }
