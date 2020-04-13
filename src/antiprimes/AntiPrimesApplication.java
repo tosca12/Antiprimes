@@ -1,4 +1,4 @@
-import antiprimes.AntiPrimesSequence;
+package antiprimes;
 import ui.MainWindow;
 
 import javax.swing.*;
